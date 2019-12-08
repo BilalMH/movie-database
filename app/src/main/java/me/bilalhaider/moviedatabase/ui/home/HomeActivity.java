@@ -1,10 +1,12 @@
-package me.bilalhaider.moviedatabase;
+package me.bilalhaider.moviedatabase.ui.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import me.bilalhaider.moviedatabase.R;
+
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
