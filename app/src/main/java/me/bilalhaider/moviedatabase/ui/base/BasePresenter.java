@@ -23,7 +23,7 @@ public class BasePresenter<V extends BaseView> implements LifecycleObserver {
         mCurrentView = null;
     }
 
-    public void initCompositDisposible() {
+    public void initCompositeDisposable() {
         if (mCompositeDisposable.isDisposed()) {
             mCompositeDisposable = new CompositeDisposable();
         }
@@ -45,7 +45,7 @@ public class BasePresenter<V extends BaseView> implements LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void presenterOnCreate() {
-        initCompositDisposible();
+        initCompositeDisposable();
     }
 
 
