@@ -84,8 +84,10 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @Override
     public void handleOnResponseSuccess(SearchResponse searchResponse) {
-        HomeAdapter homeAdapter = new HomeAdapter(this, searchResponse.getSearch());
-        movieListRV.setAdapter(homeAdapter);
+        if (searchResponse.getSearch() != null) {
+            HomeAdapter homeAdapter = new HomeAdapter(this, searchResponse.getSearch());
+            movieListRV.setAdapter(homeAdapter);
+        }
     }
 
     @Override

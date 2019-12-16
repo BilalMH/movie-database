@@ -1,23 +1,23 @@
-package me.bilalhaider.moviedatabase.ui.home;
+package me.bilalhaider.moviedatabase.ui.movie;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import me.bilalhaider.moviedatabase.MovieDatabaseApplication;
-import me.bilalhaider.moviedatabase.data.model.SearchResponse;
+import me.bilalhaider.moviedatabase.data.model.MovieResponse;
 import me.bilalhaider.moviedatabase.ui.base.BasePresenter;
 import me.bilalhaider.moviedatabase.util.Constants;
 
-public class HomePresenter extends BasePresenter<HomeContract.View> implements HomeContract.Presenter {
+public class MoviePresenter extends BasePresenter<MovieContract.View> implements MovieContract.Presenter {
 
     @Override
-    public void searchMovie(String searchQuery) {
+    public void getMovieByID(String imdbID) {
         if (mCurrentView != null) {
             if (mCurrentView.isNetworkAvailable()) {
                 mCurrentView.showProgress();
-                Single<SearchResponse> searchMovies = MovieDatabaseApplication.getApiService().getSearchResults(searchQuery, Constants.apiKey);
-                SearchResultObserver searchResultObserver = new SearchResultObserver();
+                Single<MovieResponse> searchMovies = MovieDatabaseApplication.getApiService().getMovieByID(imdbID, Constants.apiKey);
+                MoviePresenter.MovieResponseObserver searchResultObserver = new MoviePresenter.MovieResponseObserver();
                 searchMovies.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(searchResultObserver);
@@ -28,10 +28,10 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
 
     }
 
-    class SearchResultObserver extends DisposableSingleObserver<SearchResponse> {
+    class MovieResponseObserver extends DisposableSingleObserver<MovieResponse> {
 
         @Override
-        public void onSuccess(SearchResponse value) {
+        public void onSuccess(MovieResponse value) {
             if (mCurrentView != null) {
                 mCurrentView.hideProgress();
                 mCurrentView.handleOnResponseSuccess(value);

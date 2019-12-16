@@ -19,17 +19,17 @@ public class BasePresenter<V extends BaseView> implements LifecycleObserver {
         mCurrentView = view;
     }
 
-    public void detachView() {
+    private void detachView() {
         mCurrentView = null;
     }
 
-    public void initCompositeDisposable() {
-        if (mCompositeDisposable.isDisposed()) {
+    private void initCompositeDisposable() {
+        if (mCompositeDisposable != null && mCompositeDisposable.isDisposed()) {
             mCompositeDisposable = new CompositeDisposable();
         }
     }
 
-    public void clearCompositeDisposable() {
+    private void clearCompositeDisposable() {
         mCompositeDisposable.dispose();
     }
 

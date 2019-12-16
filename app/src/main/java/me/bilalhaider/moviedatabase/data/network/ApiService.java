@@ -40,12 +40,8 @@ public class ApiService {
             Request original = chain.request();
             HttpUrl originalHttpUrl = original.url();
 
-            HttpUrl urlWithApiKey = originalHttpUrl.newBuilder()
-                    .addQueryParameter("apiKey", Constants.apiKey)
-                    .build();
-
             Request.Builder requestBuilder = original.newBuilder()
-                    .url(urlWithApiKey)
+                    .url(original.url())
                     .method(original.method(), original.body());
 
             Request newRequest = requestBuilder.build();
