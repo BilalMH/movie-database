@@ -2,6 +2,7 @@ package me.bilalhaider.moviedatabase.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResponse{
@@ -10,7 +11,7 @@ public class SearchResponse{
 	@SerializedName("totalResults")
 	private String totalResults;
 	@SerializedName("Search")
-	private List<SearchItemResponse> search;
+	private ArrayList<SearchItemResponse> search;
 
 	public void setResponse(String response){
 		this.response = response;
@@ -28,11 +29,11 @@ public class SearchResponse{
 		return totalResults;
 	}
 
-	public void setSearch(List<SearchItemResponse> search){
+	public void setSearch(ArrayList<SearchItemResponse> search){
 		this.search = search;
 	}
 
-	public List<SearchItemResponse> getSearch(){
+	public ArrayList<SearchItemResponse> getSearch(){
 		return search;
 	}
 }
