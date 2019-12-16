@@ -30,7 +30,8 @@ public class BasePresenter<V extends BaseView> implements LifecycleObserver {
     }
 
     private void clearCompositeDisposable() {
-        mCompositeDisposable.dispose();
+        if (mCompositeDisposable != null)
+            mCompositeDisposable.dispose();
     }
 
     public void addDisposable(Disposable disposable) {

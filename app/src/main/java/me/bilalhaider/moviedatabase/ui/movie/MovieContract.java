@@ -6,6 +6,7 @@ import me.bilalhaider.moviedatabase.ui.base.BaseView;
 public interface MovieContract {
 
     interface View extends BaseView {
+        void initResources();
         Boolean isNetworkAvailable();
         void showProgress();
         void hideProgress();
