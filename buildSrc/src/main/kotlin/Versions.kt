@@ -12,6 +12,10 @@ object Versions {
         const val VIEWMODEL_COMPOSE = "2.4.1"
     }
 
+    object Kotlinx {
+        const val SERIALIZATION = "1.3.2"
+    }
+
     const val KTOR = "1.6.7"
     const val JUNIT = "4.13.2"
     const val OK_HTTP = "4.9.3"
