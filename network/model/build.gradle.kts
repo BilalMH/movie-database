@@ -50,13 +50,11 @@ buildkonfig {
 
     defaultConfigs {
         buildConfigField(Type.BOOLEAN, "RELEASE", "false")
-        buildConfigField(Type.BOOLEAN, "BETA", "false")
         buildConfigField(Type.BOOLEAN, "DEBUG", "true")
     }
 
     defaultConfigs("release") {
         buildConfigField(Type.BOOLEAN, "RELEASE", "true")
-        buildConfigField(Type.BOOLEAN, "BETA", "false")
         buildConfigField(Type.BOOLEAN, "DEBUG", "false")
     }
 }

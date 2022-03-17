@@ -2,7 +2,6 @@ import com.codingfeline.buildkonfig.compiler.FieldSpec.Type
 
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization")
     id("com.android.library")
     id("com.codingfeline.buildkonfig")
 }
@@ -16,20 +15,15 @@ kotlin {
                 apiVersion = "1.6"
                 languageVersion = "1.6"
                 progressiveMode = true
-                optIn("io.ktor.util.InternalAPI")
+                optIn("kotlin.time.ExperimentalTime")
+                optIn("kotlinx.serialization.ExperimentalSerializationApi")
             }
         }
 
         val commonMain by getting {
             dependencies {
+                implementation(project(":network:mobileapi-client"))
                 implementation(project(":network:model"))
-
-                implementation("io.ktor:ktor-client-auth:${Versions.KTOR}")
-                implementation("io.ktor:ktor-client-core:${Versions.KTOR}")
-                implementation("io.ktor:ktor-client-encoding:${Versions.KTOR}")
-                implementation("io.ktor:ktor-client-json:${Versions.KTOR}")
-                implementation("io.ktor:ktor-client-serialization:${Versions.KTOR}")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlinx.COROUTINES}")
             }
         }
         val commonTest by getting {
@@ -39,13 +33,7 @@ kotlin {
             }
         }
 
-        val androidMain by getting {
-            dependencies {
-                implementation("com.squareup.okhttp3:okhttp:${Versions.OK_HTTP}")
-                implementation("com.squareup.okhttp3:logging-interceptor:${Versions.OK_HTTP}")
-                implementation("io.ktor:ktor-client-okhttp:${Versions.KTOR}")
-            }
-        }
+        val androidMain by getting
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
@@ -58,13 +46,13 @@ kotlin {
 multiplatformLibrary()
 
 buildkonfig {
-    packageName = "me.bilalhaider.moviedatabase.network.mobileapi.client"
+    packageName = "me.bilalhaider.moviedatabase.network.mobileapi"
 
     defaultConfigs {
         buildConfigField(Type.BOOLEAN, "RELEASE", "false")
         buildConfigField(Type.BOOLEAN, "DEBUG", "true")
 
-        buildConfigField(Type.STRING, "DEFAULT_MOBILEAPI_ENVIRONMENT", "PRODUCTION")
+        buildConfigField(Type.LONG, "DEFAULT_REPOSITORY_DATA_TIMEOUT", "1800L")
     }
 
     defaultConfigs("release") {

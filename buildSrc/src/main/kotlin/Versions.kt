@@ -13,6 +13,7 @@ object Versions {
     }
 
     object Kotlinx {
+        const val COROUTINES = "1.6.0"
         const val SERIALIZATION = "1.3.2"
     }
 
