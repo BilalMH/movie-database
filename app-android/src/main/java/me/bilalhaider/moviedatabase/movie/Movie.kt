@@ -17,8 +17,6 @@ fun Movie(
 ) {
     movieViewModel.movie.collectAsState().value?.let { movie ->
         Column {
-            Spacer(Modifier.windowInsetsTopHeight(WindowInsets.statusBars))
-
             LazyColumn {
                 item {
                     Text(

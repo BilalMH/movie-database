@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
 data class SearchResult(
     @SerialName("Title") val title: String,
     @SerialName("Year") val year: String,
-    val imdbId: String,
+    val imdbID: String,
     @SerialName("Poster") val poster: String,
 )

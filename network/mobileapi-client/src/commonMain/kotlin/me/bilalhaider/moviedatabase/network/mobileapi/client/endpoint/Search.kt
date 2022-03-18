@@ -11,7 +11,7 @@ suspend fun MobileAPIClient.search(
     query: String
 ): SearchResponse? = executeGET<SearchResponse> {
     url {
-        encodedPath = "/?apikey=36fa806b"
-        parameter("s", query)
+        encodedPath = "/?apikey=36fa806b&s=$query"
+//        parameter("s", query)
     }
 }
