@@ -79,24 +79,10 @@ dependencies {
     api("androidx.swiperefreshlayout:swiperefreshlayout:${Versions.Androidx.SWIPE_REFRESH_LAYOUT}")
     api("androidx.viewpager2:viewpager2:${Versions.Androidx.VIEW_PAGER2}")
 
-    implementation ("com.squareup.retrofit2:retrofit:2.6.1")
-    implementation ("com.squareup.retrofit2:converter-gson:2.4.0")
-    implementation ("com.squareup.retrofit2:converter-scalars:2.1.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:3.12.3")
-    implementation ("com.squareup.retrofit2:adapter-rxjava2:2.6.1")
-    implementation ("io.reactivex.rxjava2:rxandroid:2.0.2")
-    implementation ("com.squareup.retrofit2:retrofit-converters:2.6.1")
-
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:${Versions.Hilt.HILT_VIEW_MODEL}")
     implementation("com.google.dagger:hilt-android:${Versions.Hilt.HILT}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Hilt.HILT}")
-
-    implementation ("com.jakewharton:butterknife:10.2.0")
-    annotationProcessor ("com.jakewharton:butterknife-compiler:10.2.0")
-
-    implementation ("com.github.bumptech.glide:glide:4.10.0")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.10.0")
-
+    
     api("com.google.accompanist:accompanist-flowlayout:${Versions.ACCOMPANIST}")
     api("com.google.accompanist:accompanist-insets:${Versions.ACCOMPANIST}")
 
