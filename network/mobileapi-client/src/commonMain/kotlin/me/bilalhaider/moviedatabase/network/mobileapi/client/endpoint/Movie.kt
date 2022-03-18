@@ -11,7 +11,8 @@ suspend fun MobileAPIClient.movie(
     id: String
 ): Movie? = executeGET<Movie> {
     url {
-        encodedPath = "/?apikey=36fa806b"
+        encodedPath = "/"
+        parameter("apikey", "36fa806b")
         parameter("i", id)
     }
 }

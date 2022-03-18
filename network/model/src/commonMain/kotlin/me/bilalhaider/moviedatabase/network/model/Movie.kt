@@ -11,7 +11,7 @@ data class Movie(
     @SerialName("Title") val title: String,
     @SerialName("Year") val year: String,
     @SerialName("Rated") val rated: String,
-    @SerialName("Release") val theatricalRelease: String,
+    @SerialName("Released") val theatricalRelease: String,
     @SerialName("DVD") val dvdRelease: String,
     @SerialName("Runtime") val runtime: String,
     @SerialName("Genre") val genre: String,
@@ -22,5 +22,5 @@ data class Movie(
     @SerialName("Awards") val awards: String,
     @SerialName("Poster") val poster: String,
     @SerialName("Ratings") val ratings: List<Rating> = emptyList(),
-    val imdbId: String,
+    val imdbID: String
 )

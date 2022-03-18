@@ -11,8 +11,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app-android" />
-            <option value="$PROJECT_DIR$/app-android/base" />
-            <option value="$PROJECT_DIR$/app-android/movie" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/network" />
             <option value="$PROJECT_DIR$/network/mobileapi" />

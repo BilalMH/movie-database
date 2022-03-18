@@ -1,8 +1,7 @@
 rootProject.name = "moviedatabase"
 
 include(
-        ":app-android:base",
-        ":app-android:movie",
+        ":app-android",
 
         ":network:mobileapi",
         ":network:mobileapi-client",

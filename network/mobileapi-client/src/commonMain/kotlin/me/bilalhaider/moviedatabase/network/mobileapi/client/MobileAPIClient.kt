@@ -10,6 +10,7 @@ import io.ktor.http.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import me.bilalhaider.moviedatabase.network.model.json
 
 /**
  * Created by Bilal Haider on 17/03/2022
@@ -38,7 +39,7 @@ open class MobileAPIClient(): Closeable {
                         }
 
                         Json {
-                            serializer = KotlinxSerializer()
+                            serializer = KotlinxSerializer(json())
                         }
 
                         HttpResponseValidator {

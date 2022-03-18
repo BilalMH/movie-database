@@ -35,6 +35,7 @@ object Versions {
         const val HILT_VIEW_MODEL = "1.0.0-alpha03"
     }
 
+    const val ACCOMPANIST = "0.24.4-alpha"
     const val COIL = "1.4.0"
     const val JUNIT = "4.13.2"
     const val KTOR = "1.6.7"
