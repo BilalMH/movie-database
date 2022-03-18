@@ -20,6 +20,8 @@ class MainActivityViewModel @Inject constructor(
 
     val searchResults: StateFlow<List<SearchResult>> = searchRepository.data
 
+    val searchResultCount: StateFlow<String> = searchRepository.resultCount
+
     fun fetchSearchResults(query: String) {
         viewModelScope.launch {
             try {

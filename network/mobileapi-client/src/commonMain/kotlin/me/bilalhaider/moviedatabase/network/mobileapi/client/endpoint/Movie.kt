@@ -1,6 +1,5 @@
 package me.bilalhaider.moviedatabase.network.mobileapi.client.endpoint
 
-import io.ktor.client.request.*
 import me.bilalhaider.moviedatabase.network.mobileapi.client.MobileAPIClient
 import me.bilalhaider.moviedatabase.network.model.Movie
 
@@ -11,8 +10,6 @@ suspend fun MobileAPIClient.movie(
     id: String
 ): Movie? = executeGET<Movie> {
     url {
-        encodedPath = "/"
-        parameter("apikey", "36fa806b")
-        parameter("i", id)
+        encodedPath = "/?apikey=36fa806b&i=$id"
     }
 }

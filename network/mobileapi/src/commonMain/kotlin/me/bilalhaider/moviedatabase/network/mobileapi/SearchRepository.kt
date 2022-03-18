@@ -17,11 +17,15 @@ class SearchRepository(
     private val _data = MutableStateFlow<List<SearchResult>>(emptyList())
     val data: StateFlow<List<SearchResult>> = _data
 
+    private val _resultCount = MutableStateFlow("")
+    val resultCount: StateFlow<String> = _resultCount
+
     suspend fun searchMovie(query: String) {
         mobileAPIClient.use {
             it.search(query)
         }?.let {
             _data.value = it.data
+            _resultCount.value = it.totalResults
         }
     }
 

@@ -1,6 +1,5 @@
 package me.bilalhaider.moviedatabase.network.mobileapi.client.endpoint
 
-import io.ktor.client.request.*
 import me.bilalhaider.moviedatabase.network.mobileapi.client.MobileAPIClient
 import me.bilalhaider.moviedatabase.network.mobileapi.client.response.SearchResponse
 
@@ -12,6 +11,5 @@ suspend fun MobileAPIClient.search(
 ): SearchResponse? = executeGET<SearchResponse> {
     url {
         encodedPath = "/?apikey=36fa806b&s=$query"
-//        parameter("s", query)
     }
 }
