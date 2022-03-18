@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -82,7 +80,7 @@ dependencies {
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:${Versions.Hilt.HILT_VIEW_MODEL}")
     implementation("com.google.dagger:hilt-android:${Versions.Hilt.HILT}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Hilt.HILT}")
-    
+
     api("com.google.accompanist:accompanist-flowlayout:${Versions.ACCOMPANIST}")
     api("com.google.accompanist:accompanist-insets:${Versions.ACCOMPANIST}")
 
