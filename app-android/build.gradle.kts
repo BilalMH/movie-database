@@ -77,7 +77,6 @@ dependencies {
     api("androidx.swiperefreshlayout:swiperefreshlayout:${Versions.Androidx.SWIPE_REFRESH_LAYOUT}")
     api("androidx.viewpager2:viewpager2:${Versions.Androidx.VIEW_PAGER2}")
 
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:${Versions.Hilt.HILT_VIEW_MODEL}")
     implementation("com.google.dagger:hilt-android:${Versions.Hilt.HILT}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Hilt.HILT}")
 

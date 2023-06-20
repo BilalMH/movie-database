@@ -64,14 +64,6 @@ fun LibraryExtension.androidLibrary() {
             }
         }
     }
-
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Compose.COMPOSE_COMPILER
-    }
 }
 
 fun Project.multiplatformLibrary(

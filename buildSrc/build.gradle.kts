@@ -9,8 +9,8 @@ repositories {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:7.1.2")
+    implementation("com.android.tools.build:gradle:7.4.2")
     implementation("org.ajoberstar.grgit:grgit-core:4.1.0")
     implementation(kotlin("compiler-embeddable", "1.6.10"))
-    implementation(kotlin("gradle-plugin", "1.6.10"))
+    implementation(kotlin("gradle-plugin", "1.8.10"))
 }
