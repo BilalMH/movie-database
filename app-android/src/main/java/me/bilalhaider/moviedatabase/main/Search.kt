@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
@@ -30,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
 import me.bilalhaider.moviedatabase.network.model.SearchResult
+import java.util.Locale
 
 /**
  * Created by Bilal Haider on 18/03/2022
@@ -56,7 +58,7 @@ fun Search(
             TextField(
                 keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words),
                 label = { Text("Search for a movie") },
-                modifier = Modifier.height(48.dp),
+                modifier = Modifier.wrapContentHeight(),
                 singleLine = true,
                 value = textState.value,
                 onValueChange = {
@@ -84,7 +86,7 @@ fun Search(
                         modifier = Modifier
                             .weight(1f)
                             .padding(all = 16.dp),
-                        text = "Found ${searchResultsCount.value} items",
+                        text = "${searchResultsCount.value} results",
                         fontSize = 16.sp
                     )
                 }
@@ -125,7 +127,7 @@ fun SearchResultItem(
 
             Text(
                 modifier = Modifier.padding(top = 5.dp),
-                text = searchResult.year,
+                text = searchResult.searchResultSubTitle(),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium
             )
