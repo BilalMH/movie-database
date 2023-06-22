@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
@@ -23,6 +24,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -35,9 +37,10 @@ import me.bilalhaider.moviedatabase.network.model.SearchResult
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun Search(
-    mainActivityViewModel: MainActivityViewModel = viewModel(),
     onSearchResultClickCallback: (String) -> Unit
 ) {
+
+    val mainActivityViewModel: MainActivityViewModel = viewModel()
     val textState = remember { mutableStateOf(TextFieldValue()) }
     val searchResults = mainActivityViewModel.searchResults.collectAsState()
     val searchResultsCount = mainActivityViewModel.searchResultCount.collectAsState()
@@ -62,7 +65,9 @@ fun Search(
             )
 
             Button(
-                modifier = Modifier.height(48.dp).padding(start = 5.dp),
+                modifier = Modifier
+                    .height(48.dp)
+                    .padding(start = 5.dp),
                 onClick = {
                     mainActivityViewModel.fetchSearchResults(textState.value.text)
                     keyboardController?.hide()
@@ -84,11 +89,9 @@ fun Search(
                     )
                 }
 
-            }
-
-            items(items = searchResults.value) {
-
-                SearchResultItem(searchResult = it, onSearchResultClickCallback)
+                items(items = searchResults.value) {
+                    SearchResultItem(searchResult = it, onSearchResultClickCallback)
+                }
             }
         }
     }
@@ -145,5 +148,13 @@ fun SearchResultItem(
             )
         }
 
+    }
+}
+
+@Composable
+@Preview
+fun SearchComposablePreview() {
+    MaterialTheme {
+        Search { }
     }
 }

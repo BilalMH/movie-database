@@ -9,6 +9,6 @@ import me.bilalhaider.moviedatabase.network.model.SearchResult
  */
 @Serializable
 data class SearchResponse(
-    @SerialName("Search") val data: List<SearchResult>,
-    val totalResults: String
+    @SerialName("Search") val data: List<SearchResult> = emptyList(),
+    val totalResults: String = ""
 )

@@ -79,6 +79,7 @@ dependencies {
 
     implementation("com.google.dagger:hilt-android:${Versions.Hilt.HILT}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Hilt.HILT}")
+    kapt("androidx.hilt:hilt-compiler:${Versions.Hilt.HILT_COMPILER}")
 
     api("com.google.accompanist:accompanist-flowlayout:${Versions.ACCOMPANIST}")
     api("com.google.accompanist:accompanist-insets:${Versions.ACCOMPANIST}")
@@ -91,6 +92,9 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     debugImplementation("androidx.fragment:fragment-testing:1.4.1")
+
+    androidTestImplementation( "io.mockk:mockk-android:${Versions.MOCKK}")
+    androidTestImplementation( "io.mockk:mockk-agent:${Versions.MOCKK}")
 
     testImplementation(kotlin("test-junit"))
 }

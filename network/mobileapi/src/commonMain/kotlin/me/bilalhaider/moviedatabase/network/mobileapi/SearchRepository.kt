@@ -2,6 +2,7 @@ package me.bilalhaider.moviedatabase.network.mobileapi
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import me.bilalhaider.moviedatabase.network.mobileapi.client.MobileAPIClient
 import me.bilalhaider.moviedatabase.network.mobileapi.client.endpoint.search
 import me.bilalhaider.moviedatabase.network.mobileapi.client.use
@@ -27,6 +28,22 @@ class SearchRepository(
             _data.value = it.data
             _resultCount.value = it.totalResults
         }
+    }
+
+    suspend fun sortMoviesByTitleAscending() {
+        _data.value = data.first().sortedBy { it.title }
+    }
+
+    suspend fun sortMoviesByTitleDescending() {
+       _data.value = data.first().sortedByDescending { it.title }
+    }
+
+    suspend fun sortMoviesByYearAscending() {
+        _data.value = data.first().sortedBy { it.year }
+    }
+
+    suspend fun sortMoviesByYearDescending() {
+        _data.value = data.first().sortedByDescending { it.year }
     }
 
 

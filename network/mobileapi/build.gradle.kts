@@ -30,6 +30,11 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+                implementation("com.google.truth:truth:1.1.3")
+                implementation("io.insert-koin:koin-core:${Versions.KOIN}")
+                implementation("io.insert-koin:koin-test:${Versions.KOIN}")
+                implementation("io.insert-koin:koin-test-junit4:${Versions.KOIN}")
+                implementation("io.kotest.extensions:kotest-extensions-koin:${Versions.KOTEST}")
             }
         }
 

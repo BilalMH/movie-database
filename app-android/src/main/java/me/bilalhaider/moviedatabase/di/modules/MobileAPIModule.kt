@@ -18,7 +18,9 @@ import me.bilalhaider.moviedatabase.network.mobileapi.client.MobileAPIClient
 object MobileAPIModule {
 
     @Provides
-    fun mobileAPIClient() = MobileAPIClient()
+    fun mobileAPIClient(
+        @ApplicationContext application: Context
+    ) = MobileAPIClient()
 
     @Provides
     fun movieRepository(

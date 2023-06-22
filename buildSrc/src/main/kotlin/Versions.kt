@@ -22,7 +22,7 @@ object Versions {
     object Compose {
         const val COMPOSE = "1.4.3"
         const val COMPOSE_COMPILER = "1.4.3"
-        const val PAGING_COMPOSE = "1.0.0-alpha14"
+        const val PAGING_COMPOSE = "1.0.0-alpha20"
         const val VIEWMODEL_COMPOSE = "2.6.1"
         const val MATERIAL = "1.1.0"
     }
