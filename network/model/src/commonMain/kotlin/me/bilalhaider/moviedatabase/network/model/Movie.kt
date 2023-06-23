@@ -24,3 +24,21 @@ data class Movie(
     @SerialName("Ratings") val ratings: List<Rating> = emptyList(),
     val imdbID: String
 )
+
+val sampleMovieObject = Movie (
+    title = "The Batman",
+    year = "2022",
+    rated = "R",
+    theatricalRelease = "04 Mar 2022",
+    dvdRelease = "19 Apr 2022",
+    runtime = "176 min",
+    genre = "Action, Crime, Drama",
+    director = "Matt Reeves",
+    writer = "Matt Reeves, Peter Craig, Bob Kane",
+    actors = "Robert Pattinson, Zoë Kravitz, Jeffrey Wright",
+    plot = "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
+    awards = "Nominated for 3 Oscars. 33 wins & 163 nominations total",
+    poster = "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_SX300.jpg",
+    ratings = emptyList(),
+    imdbID = "1"
+)

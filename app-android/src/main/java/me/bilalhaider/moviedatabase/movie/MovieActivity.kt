@@ -44,12 +44,12 @@ class MovieActivity : AppCompatActivity() {
         lifecycleScope.launch {
             setContent {
 
-                val movieViewModel = viewModel<MovieViewModel>().apply {
+                viewModel<MovieViewModel>().apply {
                     fetchMovie(movieId)
                 }
 
                 MaterialTheme {
-                    Movie(movieViewModel)
+                    Movie()
                 }
 
             }

@@ -11,6 +11,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
@@ -19,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.capitalize
@@ -56,6 +58,7 @@ fun Search(
             verticalAlignment = Alignment.CenterVertically
         ) {
             TextField(
+                colors = TextFieldDefaults.textFieldColors(textColor = Color.White),
                 keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words),
                 label = { Text("Search for a movie") },
                 modifier = Modifier.wrapContentHeight(),
@@ -83,6 +86,7 @@ fun Search(
             if (searchResults.value.isNotEmpty()) {
                 item {
                     Text(
+                        color = Color.White,
                         modifier = Modifier
                             .weight(1f)
                             .padding(all = 16.dp),
@@ -120,12 +124,14 @@ fun SearchResultItem(
             .padding(end = 12.dp)
         ) {
             Text(
+                color = Color.White,
                 text = searchResult.title,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
             )
 
             Text(
+                color = Color.White,
                 modifier = Modifier.padding(top = 5.dp),
                 text = searchResult.searchResultSubTitle(),
                 fontSize = 14.sp,
