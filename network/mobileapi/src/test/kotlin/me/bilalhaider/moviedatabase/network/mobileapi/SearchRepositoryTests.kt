@@ -1,8 +1,14 @@
 package me.bilalhaider.moviedatabase.network.mobileapi
 
 import com.google.common.truth.Truth.assertThat
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respond
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.headersOf
 import kotlinx.coroutines.runBlocking
 import me.bilalhaider.moviedatabase.network.mobileapi.client.MobileAPIClient
+import me.bilalhaider.moviedatabase.network.mobileapi.mock.searchResponse
 import org.junit.Before
 import org.junit.Test
 import org.koin.test.KoinTest
@@ -13,7 +19,15 @@ class SearchRepositoryTests : KoinTest {
 
     @Before
     fun setUp() {
-        searchRepository = SearchRepository(MobileAPIClient())
+        val engine = MockEngine {request ->
+            respond(
+                content = searchResponse,
+                status = HttpStatusCode.OK,
+                headers = headersOf(HttpHeaders.ContentType, "application/json")
+            )
+        }
+
+        searchRepository = SearchRepository(MobileAPIClient(engine))
     }
 
     @Test

@@ -35,6 +35,7 @@ kotlin {
                 implementation("io.insert-koin:koin-test:${Versions.KOIN}")
                 implementation("io.insert-koin:koin-test-junit4:${Versions.KOIN}")
                 implementation("io.kotest.extensions:kotest-extensions-koin:${Versions.KOTEST}")
+                implementation("io.ktor:ktor-client-mock:${Versions.KTOR}")
             }
         }
 

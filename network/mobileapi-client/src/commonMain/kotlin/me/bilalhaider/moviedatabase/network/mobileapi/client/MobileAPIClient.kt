@@ -1,13 +1,13 @@
 package me.bilalhaider.moviedatabase.network.mobileapi.client
 
 import io.ktor.client.*
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.features.*
 import io.ktor.client.features.compression.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import io.ktor.utils.io.core.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.bilalhaider.moviedatabase.network.model.json
@@ -15,7 +15,7 @@ import me.bilalhaider.moviedatabase.network.model.json
 /**
  * Created by Bilal Haider on 17/03/2022
  */
-open class MobileAPIClient(): Closeable {
+open class MobileAPIClient(val httpEngine: HttpClientEngine? = null): Closeable {
 
     override fun close() {
         _httpClient?.close()
@@ -28,6 +28,8 @@ open class MobileAPIClient(): Closeable {
         get() {
             if (_httpClient == null) {
                 _httpClient = with(createHttpClient()) {
+                    httpEngine?.install(this)
+
                     config {
 
                         ContentEncoding {  }
