@@ -1,6 +1,7 @@
 package me.bilalhaider.moviedatabase.network.mobileapi
 
 import com.google.common.truth.Truth.assertThat
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.http.HttpHeaders
@@ -11,37 +12,40 @@ import me.bilalhaider.moviedatabase.network.mobileapi.client.MobileAPIClient
 import me.bilalhaider.moviedatabase.network.mobileapi.mock.searchResponse
 import org.junit.Before
 import org.junit.Test
-import org.koin.test.KoinTest
 
-class SearchRepositoryTests : KoinTest {
+class SearchRepositoryTests {
+
+    private val mockEngine: HttpClientEngine
+        get() = MockEngine { request ->
+            when(request.url.encodedPathAndQuery) {
+                "/?apikey=36fa806b&s=Batman" -> respond(
+                    content = searchResponse,
+                    status = HttpStatusCode.OK,
+                    headers = headersOf(HttpHeaders.ContentType, "application/json")
+                )
+                else -> error("Unhandled ${request.url.encodedPathAndQuery}")
+            }
+        }
 
     private lateinit var searchRepository: SearchRepository
 
     @Before
     fun setUp() {
-        val engine = MockEngine {request ->
-            respond(
-                content = searchResponse,
-                status = HttpStatusCode.OK,
-                headers = headersOf(HttpHeaders.ContentType, "application/json")
-            )
-        }
-
-        searchRepository = SearchRepository(MobileAPIClient(engine))
+        searchRepository = SearchRepository(MobileAPIClient(mockEngine))
     }
 
     @Test
     fun `check if search endpoint works and returns results`() = runBlocking {
         searchRepository.searchMovie("Batman")
 
-        assert(searchRepository.data.value.isNotEmpty())
+        assertThat(searchRepository.data.value).isNotEmpty()
     }
 
     @Test
-    fun `check if search endpoint returns empty results`() = runBlocking {
-        searchRepository.searchMovie("")
+    fun `check if search endpoint returns results based on query`() = runBlocking {
+        searchRepository.searchMovie("Batman")
 
-        assert(searchRepository.data.value.isEmpty())
+        assertThat(searchRepository.data.value.first().title).contains("Batman")
     }
 
     @Test

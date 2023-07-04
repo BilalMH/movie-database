@@ -1,21 +1,24 @@
 package me.bilalhaider.moviedatabase.network.mobileapi.client
 
-import io.ktor.client.*
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.features.*
-import io.ktor.client.features.compression.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.request.*
-import io.ktor.http.*
+import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.request.get
+import io.ktor.http.Url
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import me.bilalhaider.moviedatabase.network.model.json
+import kotlinx.serialization.json.Json
 
 /**
  * Created by Bilal Haider on 17/03/2022
  */
-open class MobileAPIClient(val httpEngine: HttpClientEngine? = null): Closeable {
+open class MobileAPIClient(private val httpEngine: HttpClientEngine = OkHttp.create()) : Closeable {
 
     override fun close() {
         _httpClient?.close()
@@ -27,34 +30,30 @@ open class MobileAPIClient(val httpEngine: HttpClientEngine? = null): Closeable 
     internal val client: HttpClient
         get() {
             if (_httpClient == null) {
-                _httpClient = with(createHttpClient()) {
-                    httpEngine?.install(this)
+                _httpClient = HttpClient(httpEngine) {
 
-                    config {
+                    install(HttpTimeout) {
+                        requestTimeoutMillis = 5000
+                        connectTimeoutMillis = 5000
+                        socketTimeoutMillis = 5000
+                    }
 
-                        ContentEncoding {  }
-
-                        install(HttpTimeout) {
-                            requestTimeoutMillis = 5000
-                            connectTimeoutMillis = 5000
-                            socketTimeoutMillis = 5000
-                        }
-
-                        Json {
-                            serializer = KotlinxSerializer(json())
-                        }
-
-                        HttpResponseValidator {
-                            //TODO - Handle Responses for exceptions
-                        }
-
-                        defaultRequest {
-                            val baseUrl = Url("http://www.omdbapi.com")
-
-                            host = baseUrl.host
-                            url {
-                                protocol = baseUrl.protocol
+                    install(ContentNegotiation) {
+                        json(
+                            Json {
+                                ignoreUnknownKeys = true
+                                prettyPrint = true
+                                isLenient = true
                             }
+                        )
+                    }
+
+                    defaultRequest {
+                        val baseUrl = Url("http://www.omdbapi.com")
+
+                        host = baseUrl.host
+                        url {
+                            protocol = baseUrl.protocol
                         }
                     }
                 }
@@ -66,6 +65,6 @@ open class MobileAPIClient(val httpEngine: HttpClientEngine? = null): Closeable 
     internal suspend inline fun <reified T> executeGET(
         crossinline block: HttpRequestBuilder.() -> Unit = {}
     ): T? = withContext(Dispatchers.Default) {
-        client.get<T>(block = block)
+        client.get(block = block).body()
     }
 }

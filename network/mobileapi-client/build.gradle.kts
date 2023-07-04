@@ -24,11 +24,12 @@ kotlin {
             dependencies {
                 implementation(project(":network:model"))
 
-                implementation("io.ktor:ktor-client-auth:${Versions.KTOR}")
                 implementation("io.ktor:ktor-client-core:${Versions.KTOR}")
-                implementation("io.ktor:ktor-client-encoding:${Versions.KTOR}")
-                implementation("io.ktor:ktor-client-json:${Versions.KTOR}")
-                implementation("io.ktor:ktor-client-serialization:${Versions.KTOR}")
+                implementation("io.ktor:ktor-client-android:${Versions.KTOR}")
+                implementation("io.ktor:ktor-client-content-negotiation:${Versions.KTOR}")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:${Versions.KTOR}")
+                implementation("io.ktor:ktor-client-logging:${Versions.KTOR}")
+                implementation("io.ktor:ktor-client-mock:${Versions.KTOR}")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlinx.COROUTINES}")
             }
         }
@@ -44,7 +45,7 @@ kotlin {
             dependencies {
                 implementation("com.squareup.okhttp3:okhttp:${Versions.OK_HTTP}")
                 implementation("com.squareup.okhttp3:logging-interceptor:${Versions.OK_HTTP}")
-                implementation("io.ktor:ktor-client-okhttp:${Versions.KTOR}")
+                api("io.ktor:ktor-client-okhttp:${Versions.KTOR}")
             }
         }
         val androidTest by getting {

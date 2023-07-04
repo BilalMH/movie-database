@@ -6,9 +6,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.engine.okhttp.OkHttpEngine
 import me.bilalhaider.moviedatabase.network.mobileapi.MovieRepository
 import me.bilalhaider.moviedatabase.network.mobileapi.SearchRepository
 import me.bilalhaider.moviedatabase.network.mobileapi.client.MobileAPIClient
+import me.bilalhaider.moviedatabase.network.mobileapi.client.createHttpClient
 
 /**
  * Created by Bilal Haider on 17/03/2022
@@ -20,7 +23,9 @@ object MobileAPIModule {
     @Provides
     fun mobileAPIClient(
         @ApplicationContext application: Context
-    ) = MobileAPIClient()
+    ) = MobileAPIClient(
+        createHttpClient(OkHttp.create())
+    )
 
     @Provides
     fun movieRepository(

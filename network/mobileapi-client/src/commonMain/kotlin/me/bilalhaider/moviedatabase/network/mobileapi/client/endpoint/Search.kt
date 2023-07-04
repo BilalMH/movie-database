@@ -1,5 +1,6 @@
 package me.bilalhaider.moviedatabase.network.mobileapi.client.endpoint
 
+import io.ktor.http.encodedPath
 import me.bilalhaider.moviedatabase.network.mobileapi.client.MobileAPIClient
 import me.bilalhaider.moviedatabase.network.mobileapi.client.response.SearchResponse
 
