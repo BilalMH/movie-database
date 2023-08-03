@@ -62,7 +62,12 @@ fun Search(
             verticalAlignment = Alignment.CenterVertically
         ) {
             TextField(
-                colors = TextFieldDefaults.textFieldColors(textColor = Color.White),
+                colors = TextFieldDefaults.textFieldColors(
+                    textColor = Color.Black,
+                    backgroundColor = Color.White,
+                    cursorColor = Color.White,
+                    disabledLabelColor = Color.White
+                ),
                 keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words),
                 label = { Text("Search for a movie") },
                 modifier = Modifier.wrapContentHeight(),
@@ -83,8 +88,10 @@ fun Search(
                 }
             ) {
                 Icon(
-                    Icons.Rounded.Search,
-                    contentDescription = "Search icon"
+                    imageVector = Icons.Rounded.Search,
+                    contentDescription = "Search icon",
+                    tint = Color.White
+
                 )
             }
         }

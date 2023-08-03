@@ -7,4 +7,4 @@ This application uses Bitrise for it's CI/CD
 This application uses KTOR for mobile api clients
 MockK for unit testing
 This also has some basis for KMP 
-
+ 
