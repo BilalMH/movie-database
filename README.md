@@ -8,3 +8,4 @@ This application uses KTOR for mobile api clients
 MockK for unit testing
 This also has some basis for KMP 
  
+TODO - Add pagination, Room db support
